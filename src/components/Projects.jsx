@@ -157,7 +157,11 @@ function ProjectCard({ p }) {
             if (e.target.previousElementSibling) e.target.previousElementSibling.style.display = 'none';
           }}
         />
-        <div className="preview-overlay">
+        <div
+          className="preview-overlay"
+          onClick={() => window.open(p.demo, '_blank')}
+          style={{ cursor: 'pointer' }}
+        >
           <Eye size={16} /><span>Click to explore</span>
         </div>
       </div>

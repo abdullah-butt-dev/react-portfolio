@@ -70,14 +70,14 @@ export default function Hero({ onNav }) {
             I turn raw data into actionable business insights that help companies make better decisions — using SQL, Python, and data visualization.
           </p>
           <div className="hero-ctas">
-            <a className="btn-cv" href="/Abdullah-CV.pdf" download>
-              <FileText size={14} />
-              Download CV
-            </a>
             <button className="btn-primary" onClick={() => onNav('projects')}>
               <Grid2x2 size={14} />
               View My Work
             </button>
+            <a className="btn-outline" href="/Abdullah-CV.pdf" download>
+              <FileText size={14} />
+              Download CV
+            </a>
             <a className="btn-outline" href="https://github.com/abdullah-butt-dev" target="_blank" rel="noopener noreferrer">
               <Github size={14} />
               GitHub
