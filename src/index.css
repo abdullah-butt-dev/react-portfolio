@@ -139,7 +139,7 @@
         .dashboard-preview img {
             width:100%;
             height:100%;
-            object-fit:cover;
+            object-fit:contain;
             border-radius:3px;
             display:block;
             transition:transform .3s ease;
