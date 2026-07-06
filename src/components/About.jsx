@@ -6,13 +6,13 @@ export default function About() {
         <div className="about-grid">
           <div className="about-body">
             <h2 className="reveal" style={{ marginBottom: '1.25rem' }}>
-              Analytics with a<br /><span className="gradient-text">business lens.</span>
+              Turning data into<br /><span className="gradient-text">revenue decisions.</span>
             </h2>
             <p className="reveal">
-              I'm a data analyst who focuses on extracting actionable business insights from complex datasets. My goal is to help companies make better, more informed decisions through data.
+              I'm a data analyst focused on e-commerce and marketing analytics — helping brands understand their customers, their campaigns, and their sales performance well enough to act on it.
             </p>
             <p className="reveal">
-              I work with SQL, Python, and data visualization tools to transform raw data into clear, compelling stories that drive value. Whether it's analyzing customer behavior, identifying growth opportunities, or building interactive dashboards — I deliver insights that matter.
+              My work centers on customer behavior analysis, campaign performance tracking, retention metrics, and sales trend analysis. I use SQL, Python, and interactive dashboards to turn scattered order, traffic, and marketing data into clear answers — which channels are actually driving revenue, where customers drop off, and what's worth doubling down on.
             </p>
           </div>
           <div className="about-meta reveal">
@@ -22,7 +22,7 @@ export default function About() {
             </div>
             <div className="meta-row">
               <span className="meta-key">Focus</span>
-              <span className="meta-val">Business Insights &amp; Analytics</span>
+              <span className="meta-val">E-Commerce &amp; Marketing Analytics</span>
             </div>
             <div className="meta-row">
               <span className="meta-key">Stack</span>

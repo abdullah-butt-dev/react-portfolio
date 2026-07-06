@@ -3,15 +3,15 @@
 export const logo = (slug) => `https://cdn.simpleicons.org/${slug}`;
 
 export const LOGOS = {
-  python: logo('python'),
+  python: '/python.svg',
   pandas: logo('pandas'),
   numpy: logo('numpy'),
   jupyter: logo('jupyter'),
   matplotlib: logo('matplotlib'),
   plotly: logo('plotly'),
   streamlit: logo('streamlit'),
-  github: logo('github'),
-  postgresql: logo('postgresql'),
+  github: '/github.svg',
+  postgresql: '/postgresql.svg',
   scikitlearn: logo('scikitlearn'),
   powerbi: '/powerbi.svg',       
   excel: '/excel.svg', 

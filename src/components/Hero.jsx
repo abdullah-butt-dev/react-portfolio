@@ -5,7 +5,7 @@ import HeroIllustration from './HeroIllustration.jsx';
 const TITLES = [
   'Data Analyst',
   'SQL Developer',
-  'Dashboard Builder',
+  'Dashboard Developer',
 ];
 
 export default function Hero({ onNav }) {
@@ -67,7 +67,7 @@ export default function Hero({ onNav }) {
             <span className="typing-cursor"></span>
           </div>
           <p className="hero-sub">
-            I turn raw data into actionable business insights that help companies make better decisions — using SQL, Python, and data visualization.
+            I help e-commerce brands and marketing teams turn raw data into revenue decisions — using SQL, Python, and interactive dashboards.
           </p>
           <div className="hero-ctas">
             <button className="btn-primary" onClick={() => onNav('projects')}>

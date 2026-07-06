@@ -12,7 +12,7 @@ const LINKS = [
 
 export default function MobileMenu({ open, onNav }) {
   return (
-    <div className="mobile-menu" id="mobileMenu" aria-hidden={!open}>
+    <div className={`mobile-menu${open ? ' open' : ''}`} id="mobileMenu" aria-hidden={!open}>
       {LINKS.map((l) => (
         <a key={l.id} href={`#${l.id}`} onClick={(e) => { e.preventDefault(); onNav(l.id); }}>
           {l.label}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Database, ChevronDown, Sparkles } from 'lucide-react';
 import { LOGOS } from '../logos.js';
 
@@ -49,10 +49,32 @@ const SKILLS = [
 
 function SkillCard({ s }) {
   const [active, setActive] = useState(false);
+  // Tracked in React state (not an imperative classList mutation) so that
+  // clicking the card — which changes `active` and triggers a re-render —
+  // never wipes out the "revealed" state the way a globally-applied
+  // classList.add('up') would.
+  const [revealed, setRevealed] = useState(false);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const node = cardRef.current;
+    if (!node) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setRevealed(true);
+          io.unobserve(node);
+        }
+      });
+    }, { threshold: 0.1 });
+    io.observe(node);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <div
-      className={`skill-card reveal${s.featured ? ' skill-card--featured' : ''}${active ? ' is-active' : ''}`}
+      ref={cardRef}
+      className={`skill-card reveal${revealed ? ' up' : ''}${s.featured ? ' skill-card--featured' : ''}${active ? ' is-active' : ''}`}
       style={{ '--accent': s.color }}
       tabIndex={0}
       role="button"
