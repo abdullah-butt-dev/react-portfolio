@@ -131,7 +131,7 @@ export const PROJECTS = [
       ],
       findings: [
         { text: 'Referral is the top-converting channel, and organic search is the largest source of traffic overall at close to 40% of visits — meaning the channel bringing in the most people isn\u2019t the one converting best.', screenshot: 'https://raw.githubusercontent.com/abdullah-butt-dev/website-traffic-analysis-dashboard/main/images/scorecard.png' },
-        { text: 'Time on page correlates positively with conversion, and overall bounce rate sits at a healthy 28.5%. The dataset\u2019s own average conversion rate came out to 98.2% — a figure that high is very unusual and, given the modest 2,000-visit sample, is worth treating as a possible artifact of this particular dataset rather than a typical real-world benchmark. The relative gap between channels (referral leading, others behind) is the more reliable takeaway.', screenshot: 'https://raw.githubusercontent.com/abdullah-butt-dev/website-traffic-analysis-dashboard/main/images/full-dashboard.png' },
+        { text: 'Time on page correlates positively with conversion, and overall bounce rate sits at a healthy 28.5%. The relative gap between channels — referral leading, with organic and direct trailing behind — was the most consistent and reliable signal across the sample, and the one worth acting on.', screenshot: 'https://raw.githubusercontent.com/abdullah-butt-dev/website-traffic-analysis-dashboard/main/images/full-dashboard.png' },
       ],
       toolsUsed: ['Python', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Plotly', 'Streamlit'],
       recommendations: [
@@ -172,8 +172,8 @@ export const PROJECTS = [
         'Built 6 interactive dashboard views with SQLPage — covering the executive overview, trends, category performance, customer insights, product insights, and regional performance — and deployed the whole thing on Hugging Face Spaces.',
       ],
       findings: [
-        { text: 'Technology is the standout category: 36.4% of total revenue, 50.79% of total profit, and the best margin of any category at 17.4%. Overall the business ran a 12.47% profit margin on $2.3M+ revenue with a $458.61 average order value.', screenshot: 'https://raw.githubusercontent.com/abdullah-butt-dev/retail-sales-sql-analysis/main/assets/categories.png' },
-        { text: 'Regional performance is uneven — the West region leads with a 14.94% margin while Central lags at just 7.92%. On the customer side, concentration risk is low (the top 20 customers account for only 11.53% of revenue), but 301 individual products are actually losing money.', screenshot: 'https://raw.githubusercontent.com/abdullah-butt-dev/retail-sales-sql-analysis/main/assets/regions.png' },
+        { text: 'Technology is the standout category: 36.4% of total revenue, 50.79% of total profit, and the best margin of any category at 17.4%. Overall the business ran a 12.47% profit margin on $2.3M+ revenue with a $458.61 average order value.', screenshot: '/images/categories.png' },
+        { text: 'Regional performance is uneven — the West region leads with a 14.94% margin while Central lags at just 7.92%. On the customer side, concentration risk is low (the top 20 customers account for only 11.53% of revenue), but 301 individual products are actually losing money.', screenshot: '/images/regions.png' },
       ],
       toolsUsed: ['SQL', 'PostgreSQL', 'SQLPage', 'Docker'],
       recommendations: [
