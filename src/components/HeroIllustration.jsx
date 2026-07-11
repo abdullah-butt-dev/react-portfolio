@@ -1,4 +1,14 @@
-export default function HeroIllustration() {
+export default function HeroIllustration({ imageUrl }) {
+  // If the admin has uploaded a custom hero image, use it. Otherwise fall
+  // back to the built-in animated "data pipeline" illustration below.
+  if (imageUrl) {
+    return (
+      <div className="hero-visual" aria-hidden="true">
+        <img src={imageUrl} alt="" className="hero-illustration-img" />
+      </div>
+    );
+  }
+
   return (
     <div className="hero-visual" aria-hidden="true">
       <svg className="hero-illustration" viewBox="0 30 380 200" xmlns="http://www.w3.org/2000/svg">

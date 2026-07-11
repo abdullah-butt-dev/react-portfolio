@@ -1,58 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
-import { Database, ChevronDown, Sparkles } from 'lucide-react';
-import { LOGOS } from '../logos.js';
-
-const SKILLS = [
-  {
-    title: 'Python',
-    logo: LOGOS.python,
-    desc: "Pandas, NumPy, Matplotlib & Seaborn for cleaning, analysis, and visualization — written and run in Jupyter Notebook.",
-    usage: 'Primary use: cleaning & analyzing raw datasets',
-    color: '#3776AB',
-  },
-  {
-    title: 'SQL',
-    icon: <Database size={16} style={{ color: 'var(--accent-2)' }} />,
-    desc: 'Querying, joining, and modeling relational data for business reporting and dashboards.',
-    usage: 'Primary use: querying & reporting on business data',
-    color: '#22d3ee',
-  },
-  {
-    title: 'Power BI',
-    logo: LOGOS.powerbi,
-    desc: 'Building interactive reports and dashboards for business insight delivery.',
-    usage: 'Primary use: client-ready reporting dashboards',
-    color: '#F2C811',
-  },
-  {
-    title: 'Microsoft Excel',
-    logo: LOGOS.excel,
-    desc: 'Data cleaning, pivot tables, and quick exploratory analysis.',
-    usage: 'Primary use: fast exploratory data checks',
-    color: '#217346',
-  },
-  {
-    title: 'Streamlit',
-    logo: LOGOS.streamlit,
-    desc: 'Turning analysis notebooks into deployed, interactive web dashboards.',
-    usage: 'Primary use: shipping live, interactive dashboards',
-    color: '#FF4B4B',
-  },
-  {
-    title: 'GitHub',
-    logo: LOGOS.github,
-    desc: 'Version control, project hosting, and sharing reproducible analysis code.',
-    usage: 'Primary use: version control & sharing code',
-    color: '#a78bfa',
-  },
-];
+import { ChevronDown, Sparkles } from 'lucide-react';
+import { useSkills } from '../lib/usePortfolioData.js';
+import { renderIcon, renderLogo } from '../lib/iconMap.jsx';
 
 function SkillCard({ s }) {
   const [active, setActive] = useState(false);
-  // Tracked in React state (not an imperative classList mutation) so that
-  // clicking the card — which changes `active` and triggers a re-render —
-  // never wipes out the "revealed" state the way a globally-applied
-  // classList.add('up') would.
   const [revealed, setRevealed] = useState(false);
   const cardRef = useRef(null);
 
@@ -71,10 +23,13 @@ function SkillCard({ s }) {
     return () => io.disconnect();
   }, []);
 
+  const logoSrc = s.logo ? renderLogo(s.logo) : null;
+  const icon = s.icon ? renderIcon(s.icon, { size: 16, style: { color: 'var(--accent-2)' } }) : null;
+
   return (
     <div
       ref={cardRef}
-      className={`skill-card reveal${revealed ? ' up' : ''}${s.featured ? ' skill-card--featured' : ''}${active ? ' is-active' : ''}`}
+      className={`skill-card reveal${revealed ? ' up' : ''}${active ? ' is-active' : ''}`}
       style={{ '--accent': s.color }}
       tabIndex={0}
       role="button"
@@ -85,12 +40,12 @@ function SkillCard({ s }) {
     >
       <div className="skill-card-header">
         <div className="skill-icon">
-          {s.logo ? <img src={s.logo} alt={`${s.title} logo`} /> : s.icon}
+          {logoSrc ? <img src={logoSrc} alt={`${s.title} logo`} /> : icon}
         </div>
         <span className="skill-card-title">{s.title}</span>
         <ChevronDown size={14} className="skill-chevron" />
       </div>
-      <p className="skill-desc">{s.desc}</p>
+      <p className="skill-desc">{s.description}</p>
       <div className="skill-usage">
         <Sparkles size={12} />
         <span>{s.usage}</span>
@@ -100,14 +55,18 @@ function SkillCard({ s }) {
 }
 
 export default function Skills() {
+  const { data: skills, loading, error } = useSkills();
+
   return (
     <section id="skills">
       <div className="container">
         <p className="eyebrow reveal">Skills &amp; Tools</p>
         <h2 className="reveal">What I <span className="gradient-text">work with.</span></h2>
         <p className="skills-hint reveal">Hover or tap a card to see how I actually use it.</p>
+        {loading && <p className="lead">Loading skills\u2026</p>}
+        {error && <p className="form-error">Couldn't load skills \u2014 {error.message}</p>}
         <div className="skills-grid">
-          {SKILLS.map((s) => <SkillCard s={s} key={s.title} />)}
+          {skills.map((s) => <SkillCard s={s} key={s.id} />)}
         </div>
       </div>
     </section>

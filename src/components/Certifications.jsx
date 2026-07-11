@@ -1,36 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { Award, BadgeCheck, ArrowUpRight, RotateCw } from 'lucide-react';
-
-const CERTS = [
-  {
-    name: 'Relational Database Certificate',
-    issuer: 'freeCodeCamp',
-    date: 'freeCodeCamp Certification',
-    id: 'ID: fcc-0ea91854-9fcc-4db2-8dfb-e975e1128d9c-rdv9',
-    skills: ['SQL', 'PostgreSQL', 'Bash Scripting', 'Database Design'],
-    link: 'https://freecodecamp.org/certification/fcc-0ea91854-9fcc-4db2-8dfb-e975e1128d9c/relational-databases-v9',
-  },
-  {
-    name: 'ChatGPT + Excel: Master Data, Make Decisions, Tell Stories',
-    issuer: 'Vanderbilt University',
-    date: 'Coursera Certification',
-    id: 'ID: Coursera-4148e4672cd4bbe96f744101ace30138',
-    skills: ['ChatGPT', 'Excel', 'Data Analysis', 'Data Storytelling'],
-    link: 'https://coursera.org/share/4148e4672cd4bbe96f744101ace30138',
-  },
-];
+import { useCertifications } from '../lib/usePortfolioData.js';
 
 function CertCard({ c }) {
   const [flipped, setFlipped] = useState(false);
-  // The page's ".reveal" fade-in normally gets its "up" (visible) class from
-  // an IntersectionObserver that mutates the DOM directly (classList.add).
-  // That works fine until something else re-renders this element — and
-  // clicking the card to flip it does exactly that. React then rewrites
-  // `className` from scratch using only the JSX template below, which never
-  // mentions "up", so the manually-added class was being wiped out on every
-  // click and the whole card would fade back to opacity:0. Tracking it in
-  // React state instead (same fix as Skills.jsx) keeps it in the render
-  // output permanently once revealed.
   const [revealed, setRevealed] = useState(false);
   const cardRef = useRef(null);
 
@@ -68,7 +41,7 @@ function CertCard({ c }) {
               <p className="cert-issuer">{c.issuer}</p>
             </div>
           </div>
-          <span className="cert-id">{c.id}</span>
+          <span className="cert-id">{c.cert_id}</span>
           <div className="cert-bottom">
             <span className="verified-badge"><BadgeCheck size={14} />Verified</span>
           </div>
@@ -76,24 +49,30 @@ function CertCard({ c }) {
         </div>
 
         <div className="cert-face cert-face-back">
+          <div className="cert-back-top">
+            <div>
+              <p className="cert-back-title">Issued By</p>
+              <p className="cert-name" style={{ marginBottom: 0 }}>{c.issuer}</p>
+            </div>
+            <a
+              className="cert-link-icon"
+              href={c.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              aria-label="View Certificate"
+              title="View Certificate"
+            >
+              <ArrowUpRight size={16} />
+            </a>
+          </div>
+          <p className="cert-back-date">{c.cert_date}</p>
           <div>
-            <p className="cert-back-title">Issued By</p>
-            <p className="cert-name" style={{ marginBottom: '.9rem' }}>{c.issuer}</p>
-            <p className="cert-back-date">{c.date}</p>
             <p className="cert-back-title">Skills Covered</p>
             <div className="cert-skills">
-              {c.skills.map((s) => <span className="tag" key={s}>{s}</span>)}
+              {(c.skills || []).map((s) => <span className="tag" key={s}>{s}</span>)}
             </div>
           </div>
-          <a
-            className="cert-link"
-            href={c.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-          >
-            View Certificate <ArrowUpRight size={14} />
-          </a>
         </div>
       </div>
     </div>
@@ -101,13 +80,17 @@ function CertCard({ c }) {
 }
 
 export default function Certifications() {
+  const { data: certs, loading, error } = useCertifications();
+
   return (
     <section id="certifications">
       <div className="container">
         <p className="eyebrow reveal">Certifications</p>
         <h2 className="reveal">Verified <span className="gradient-text">credentials.</span></h2>
+        {loading && <p className="lead">Loading certifications\u2026</p>}
+        {error && <p className="form-error">Couldn't load certifications \u2014 {error.message}</p>}
         <div className="cert-grid">
-          {CERTS.map((c) => <CertCard c={c} key={c.name} />)}
+          {certs.map((c) => <CertCard c={c} key={c.id} />)}
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Home.jsx';
 import ProjectDetail from './components/ProjectDetail.jsx';
+import Admin from './components/Admin.jsx';
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -23,6 +24,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home theme={theme} toggleTheme={toggleTheme} />} />
         <Route path="/projects/:slug" element={<ProjectDetail theme={theme} toggleTheme={toggleTheme} />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );

@@ -4,21 +4,16 @@ import {
   ArrowLeft, ExternalLink, Github, Sun, Moon,
   Target, Wrench, Lightbulb, CheckCircle2,
 } from 'lucide-react';
-import { PROJECTS } from './Projects.jsx';
+import { useProjects } from '../lib/usePortfolioData.js';
+import { mapProjectRow } from './Projects.jsx';
 import Footer from './Footer.jsx';
 
 export default function ProjectDetail({ theme, toggleTheme }) {
   const { slug } = useParams();
-  const project = PROJECTS.find((p) => p.slug === slug);
+  const { data: rows, loading } = useProjects();
+  const row = rows.find((p) => p.slug === slug);
+  const project = row ? mapProjectRow(row) : null;
 
-  // The site-wide ".reveal" fade-in only gets its "up" (visible) class from
-  // an IntersectionObserver that Home.jsx sets up — but that effect never
-  // runs on this page, so every section was stuck at opacity:0 forever.
-  // This runs the same reveal logic scoped to this page.
-  // React Router doesn't reset scroll position on navigation. Without this,
-  // clicking "Case Study" from partway down the homepage lands you at
-  // whatever scrollY you were already at — which, on this shorter page,
-  // often clamps to the bottom instead of the top.
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
@@ -35,7 +30,17 @@ export default function ProjectDetail({ theme, toggleTheme }) {
     }, { threshold: 0.1 });
     revEls.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, [slug]);
+  }, [slug, loading]);
+
+  if (loading) {
+    return (
+      <div className="page">
+        <div className="container first" style={{ textAlign: 'center' }}>
+          <p className="lead">Loading case study\u2026</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!project) {
     return (

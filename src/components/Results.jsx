@@ -1,11 +1,19 @@
 import { useEffect, useRef } from 'react';
+import { useSiteContent } from '../lib/usePortfolioData.js';
 
-const STATS = [
+const FALLBACK_STATS = [
   { target: 650000, decimals: 0, prefix: '', suffix: '+', label: 'Data Points Analyzed' },
   { target: 23, decimals: 1, prefix: '$', suffix: 'M+', label: 'Revenue Analyzed (SQL)' },
   { target: 5, decimals: 0, prefix: '', suffix: '+', label: 'End-to-End Dashboards Shipped' },
   { target: 94, decimals: 1, prefix: '', suffix: '%', label: 'ML Accuracy Gain Over Baseline' },
 ];
+
+const FALLBACK = {
+  eyebrow: 'By The Numbers',
+  heading_line1: "What I've",
+  heading_line2: 'Actually Done.',
+  stats: FALLBACK_STATS,
+};
 
 function formatValue(rawValue, divisor, decimals, prefix, suffix) {
   const val = rawValue / divisor;
@@ -57,13 +65,17 @@ function Counter({ target, decimals, prefix, suffix, label }) {
 }
 
 export default function Results() {
+  const { content } = useSiteContent('results', FALLBACK);
+  const c = { ...FALLBACK, ...content };
+  const stats = c.stats && c.stats.length ? c.stats : FALLBACK_STATS;
+
   return (
     <section id="results">
       <div className="container">
-        <p className="eyebrow reveal">By The Numbers</p>
-        <h2 className="reveal">What I've <span className="gradient-text">Actually Done.</span></h2>
+        <p className="eyebrow reveal">{c.eyebrow}</p>
+        <h2 className="reveal">{c.heading_line1} <span className="gradient-text">{c.heading_line2}</span></h2>
         <div className="results-grid">
-          {STATS.map((s) => <Counter key={s.label} {...s} />)}
+          {stats.map((s) => <Counter key={s.label} {...s} />)}
         </div>
       </div>
     </section>
