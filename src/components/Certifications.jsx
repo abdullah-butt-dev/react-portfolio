@@ -10,6 +10,14 @@ const CERTS = [
     skills: ['SQL', 'PostgreSQL', 'Bash Scripting', 'Database Design'],
     link: 'https://freecodecamp.org/certification/fcc-0ea91854-9fcc-4db2-8dfb-e975e1128d9c/relational-databases-v9',
   },
+  {
+    name: 'ChatGPT + Excel: Master Data, Make Decisions, Tell Stories',
+    issuer: 'Vanderbilt University',
+    date: 'Coursera Certification',
+    id: 'ID: Coursera-4148e4672cd4bbe96f744101ace30138',
+    skills: ['ChatGPT', 'Excel', 'Data Analysis', 'Data Storytelling'],
+    link: 'https://coursera.org/share/4148e4672cd4bbe96f744101ace30138',
+  },
 ];
 
 function CertCard({ c }) {

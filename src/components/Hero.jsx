@@ -67,7 +67,7 @@ export default function Hero({ onNav }) {
             <span className="typing-cursor"></span>
           </div>
           <p className="hero-sub">
-            I help e-commerce brands and marketing teams turn raw data into revenue decisions — using SQL, Python, and interactive dashboards.
+            I help growing brands, stores and marketing teams make confident moves that increase sales. I find the hidden opportunities in your numbers so you can stop wasting your budget and scale with certainty.
           </p>
           <div className="hero-ctas">
             <button className="btn-primary" onClick={() => onNav('projects')}>

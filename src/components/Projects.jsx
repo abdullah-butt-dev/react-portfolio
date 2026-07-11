@@ -43,8 +43,8 @@ export const PROJECTS = [
         'Designed a seller performance quadrant to classify sellers into stars, hidden gems, and at-risk accounts based on volume and reliability.',
       ],
       findings: [
-        { text: 'Only about 3% of customers place a second order — a significant retention gap for a platform this size, and the clearest opportunity in the whole dataset.', screenshot: 'https://raw.githubusercontent.com/abdullah-butt-dev/eda-olist-dashboard/main/images/dashboard-overview.png' },
-        { text: 'Delivery speed and customer satisfaction show a clear negative correlation once delivery time passes 21 days — satisfaction holds up reasonably well up to that point, then drops sharply.', screenshot: 'https://raw.githubusercontent.com/abdullah-butt-dev/eda-olist-dashboard/main/images/delivery-tab.png' },
+        { text: 'Only about 3% of customers place a second order — a significant retention gap for a platform this size, and the clearest opportunity in the whole dataset.', screenshot: '/images/low-retention-rate.png' },
+        { text: 'Delivery speed and customer satisfaction show a clear negative correlation once delivery time passes 21 days — satisfaction holds up reasonably well up to that point, then drops sharply.', screenshot: '/images/slow-delivery.png' },
       ],
       toolsUsed: ['Python', 'Pandas', 'Seaborn', 'Plotly', 'Streamlit'],
       recommendations: [
@@ -81,14 +81,14 @@ export const PROJECTS = [
     demo: 'https://amazon-reviews-sentiment-analyzer.streamlit.app/',
     code: 'https://github.com/abdullah-butt-dev/amazon-sentiment-app',
     caseStudy: {
-      problem: 'Manually reading and tagging customer sentiment doesn\u2019t scale past a handful of reviews, and general-purpose sentiment tools often miss the nuance of real marketplace language — sarcasm, double negatives, and category-specific slang all trip up naive approaches. The question was whether a custom-trained model could meaningfully outperform off-the-shelf tools on e-commerce review text specifically.',
+      problem: 'Reading and labeling customer feedback by hand becomes impossible as your sales grow. Standard, generic software misses the real meaning behind customer reviews because it fails to understand sarcasm, slang, or specific shopping complaints. This project solves that problem by testing whether a tailored system can read your customer feedback more accurately than basic tools, ensuring you never miss a real product issue or a happy customer trend.',
       approach: [
         'Sampled 50,000 reviews from a pool of 550K+ and built three parallel sentiment classifiers: VADER (rule-based, no training needed), TextBlob (lexicon-based), and a supervised Logistic Regression model trained on TF-IDF text features.',
         'Evaluated all three on accuracy across the same held-out review sample, then packaged the comparison into a Streamlit app with two modes: a single-review deep-dive view showing side-by-side model scores, and a bulk mode that accepts a CSV upload and returns sentiment distributions.',
       ],
       findings: [
-        { text: 'The custom Logistic Regression + TF-IDF model reached 89.6% accuracy versus 85.8% for VADER and 80.2% for TextBlob — up to a 9.4-point gain from learning e-commerce-specific vocabulary instead of relying on general-purpose rules or dictionaries.', screenshot: 'https://raw.githubusercontent.com/abdullah-butt-dev/amazon-sentiment-app/main/images/app_demo.png' },
-        { text: 'The custom model still has a blind spot: phrases like "not bad at all" can get misclassified as negative because the token "bad" outweighs the surrounding negation. Separately, unhappy customers write roughly 11% more text on average than satisfied ones.', screenshot: 'https://raw.githubusercontent.com/abdullah-butt-dev/amazon-sentiment-app/main/images/bulk_demo.png' },
+        { text: 'The custom Logistic Regression + TF-IDF model reached 89.6% accuracy versus 85.8% for VADER and 80.2% for TextBlob — up to a 9.4-point gain from learning e-commerce-specific vocabulary instead of relying on general-purpose rules or dictionaries.', screenshot: '/images/model-accuracy.png' },
+        { text: 'The custom model still has a blind spot: phrases like "not bad at all" can get misclassified as negative because the token "bad" outweighs the surrounding negation. Separately, unhappy customers write roughly 11% more text on average than satisfied ones.', screenshot: '/images/sentiment-distribution.png' },
       ],
       toolsUsed: ['Python', 'NLTK', 'TextBlob', 'Scikit-learn', 'Plotly', 'Streamlit'],
       recommendations: [
@@ -127,11 +127,11 @@ export const PROJECTS = [
       problem: 'Businesses spend real money acquiring website traffic, but that spend only pays off if you know which channels and on-site behaviors actually lead to conversions. Working from 2,000 recorded visits — with page views, session duration, bounce rate, traffic source, time on page, and prior-visit history all tracked — the goal was to turn that raw behavioral data into a clear read on what to fund and what to fix.',
       approach: [
         'Ran a full EDA pass first: missing-value and duplicate checks, statistical summaries, then dedicated traffic-source, conversion, distribution, and correlation analyses.',
-        'Built an interactive Streamlit dashboard with filters by traffic source and metric, KPI cards for at-a-glance conversion and bounce rate, a correlation heatmap, and a ranked traffic-source scorecard.',
+        'Built an interactive Streamlit dashboard with filters by traffic source and metric, KPI cards for at-a-glance traffic and engagement metrics, a correlation heatmap, and a ranked traffic-source scorecard.',
       ],
       findings: [
-        { text: 'Referral is the top-converting channel, and organic search is the largest source of traffic overall at close to 40% of visits — meaning the channel bringing in the most people isn\u2019t the one converting best.', screenshot: 'https://raw.githubusercontent.com/abdullah-butt-dev/website-traffic-analysis-dashboard/main/images/scorecard.png' },
-        { text: 'Time on page correlates positively with conversion, and overall bounce rate sits at a healthy 28.5%. The relative gap between channels — referral leading, with organic and direct trailing behind — was the most consistent and reliable signal across the sample, and the one worth acting on.', screenshot: 'https://raw.githubusercontent.com/abdullah-butt-dev/website-traffic-analysis-dashboard/main/images/full-dashboard.png' },
+        { text: 'Referral is the top-converting channel, and organic search is the largest source of traffic overall at close to 40% of visits — meaning the channel bringing in the most people isn\u2019t the one converting best.', screenshot: '/images/traffic-sources.png' },
+        { text: 'Time on page correlates positively with conversion, and overall bounce rate sits at a healthy 28.5%. The relative gap between channels — referral leading, with organic and direct trailing behind — was the most consistent and reliable signal across the sample, and the one worth acting on.', screenshot: '/images/bounce-rate.png' },
       ],
       toolsUsed: ['Python', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Plotly', 'Streamlit'],
       recommendations: [
@@ -213,8 +213,8 @@ export const PROJECTS = [
         'Layered in a predictive high-risk flag for individual employees and validated it against historical outcomes to confirm it actually predicted who was likely to leave.',
       ],
       findings: [
-        { text: 'Sales carries the highest departmental attrition at 20.6%, and overtime is the single biggest risk factor company-wide — employees working overtime leave at 30.6% versus 10.5% for those who don\u2019t, spiking to 37.5% for overtime staff within Sales specifically.', screenshot: 'https://raw.githubusercontent.com/abdullah-butt-dev/hr-attrition-analysis/main/dashboard_screenshot.png' },
-        { text: 'Risk concentrates in younger, lower-paid employees — the under-25 bracket churns at 39.2% and the low-salary band at 29.6% — while the validated high-risk flag correctly predicted a 65.4% attrition rate among the new hires it identified.', screenshot: null },
+        { text: 'The company is facing a clear retention crisis in the sales department, which leads all teams with a 20.6% turnover rate. Looking closely at the numbers, mandatory overtime is driving this exodus. Across the entire company, employees working extra hours are three times more likely to quit. This issue peaks sharply within the sales team itself, where a staggering 37.5% of staff who log overtime end up walking out the door.', screenshot: '/images/attrition-by-overtime.png' },
+        { text: 'The highest risk of losing staff is concentrated among youngest and lowest-paid team members. Workers under the age of 25 are leaving at a 39.2% rate, while those in the entry-level salary tier show a 29.6% turnover rate. To get ahead of this, the risk tracking framework flagged specific high-risk new hires early on, and it proved to be incredibly accurate by correctly predicting 65.4% of the employees who eventually decided to leave.', screenshot: '/images/attrition-by-age-group.png' },
       ],
       toolsUsed: ['Excel', 'Pivot Tables', 'Slicers', 'Conditional Formatting'],
       recommendations: [

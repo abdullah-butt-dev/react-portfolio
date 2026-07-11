@@ -9,10 +9,10 @@ export default function About() {
               Turning data into<br /><span className="gradient-text">revenue decisions.</span>
             </h2>
             <p className="reveal">
-              I'm a data analyst focused on e-commerce and marketing analytics — helping brands understand their customers, their campaigns, and their sales performance well enough to act on it.
+              Businesses generate massive amounts of customer and sales information every day, but it is useless if it just sits there. As a data analyst, I dig into your order history, website traffic, and ad accounts to give you clear answers. 
             </p>
             <p className="reveal">
-              My work centers on customer behavior analysis, campaign performance tracking, retention metrics, and sales trend analysis. I use SQL, Python, and interactive dashboards to turn scattered order, traffic, and marketing data into clear answers — which channels are actually driving revenue, where customers drop off, and what's worth doubling down on.
+              You will see exactly which marketing channels bring in cash, where you are losing shoppers before they buy, and how to keep customers coming back for a second purchase.
             </p>
           </div>
           <div className="about-meta reveal">
